@@ -20,21 +20,23 @@ module.exports=class extends Generator{
     }
     writting(){
         const filePath=[
-            "public/favicon.ico",
-            "public/index.html",
-            "src/assets/logo.png",
-            "src/components/HelloWorld.vue",
-            "src/App.vue",
-            "src/main.js",
+            "public",
+            "src",
             ".browserslistrc",
             ".eslintrc.js",
             "package.json",
-            "package-lock.json",
             "README.md",
         ]
-
+        const dirPath =["public","src"]
         filePath.forEach(path=>{
-            this.fs.copyTpl(this.templatePath(path),this.destinationPath(path),this.res)
+            console.log(path)
+            if(dirPath.includes(path)){
+                this.fs.copyTpl(this.templatePath(`${path}/**/*`),this.destinationPath(path),this.res)
+            }else{
+                this.fs.copyTpl(this.templatePath(path),this.destinationPath(path),this.res,{},{
+                    globOptions: { dot: true } 
+                })
+            }
         })
        // this.fs.write(
         //    this.destinationPath('avb.text'),
