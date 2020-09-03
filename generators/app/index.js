@@ -28,7 +28,6 @@ module.exports=class extends Generator{
             "src/main.js",
             ".browserslistrc",
             ".eslintrc.js",
-            ".gitignore",
             "package.json",
             "package-lock.json",
             "README.md",
